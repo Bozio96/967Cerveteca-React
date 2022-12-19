@@ -1,0 +1,15 @@
+.logoYtitulo{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+.titulo{
+    margin: 10px;
+    width: 200px;
+    color: white;
+}
+
+.logo{
+    width: 100px;
+    border-radius: 10px;
+}
