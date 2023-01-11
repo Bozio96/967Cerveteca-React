@@ -1,4 +1,4 @@
-import "./styles/cartWidget.css";
+
 export function CartWidget() {
   const icono =
     "https://res.cloudinary.com/dnfil5isx/image/upload/v1671478868/imagenes/icons8-carrito-de-compras-30_pizplc.png";
