@@ -14,15 +14,15 @@ function App() {
           <ItemListContainer title="Bienvenido a 967 Cerveteca"/>
         } />
 
-        <Route path='categoria/:nombreCategoria' element={
+        <Route path='/categoria/:nombreCategoria' element={
           <ItemListContainer title="Bienvenido a 967 Cerveteca"/>
         } />
         
-        <Route path='detalle/:id' element={
+        <Route path='/detalle/:id' element={
           <ItemDetailContainer title="Bienvenido a 967 Cerveteca"/>
         } />
 
-        <Route path='carrito' element={
+        <Route path='/carrito' element={
           <Carrito/>
         }/>
         

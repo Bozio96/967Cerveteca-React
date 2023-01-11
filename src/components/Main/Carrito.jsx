@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Carrito() {
   return (
-    <div>Aca va a estar el carrito</div>
+    <div className='textoDePrueba'>Esta va a ser el componente del carrito</div>
   )
 }

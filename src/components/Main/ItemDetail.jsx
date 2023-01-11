@@ -12,7 +12,7 @@ export default function ItemDetail({item}) {
         </section>
 
         <section>
-          <p>Descripcion del producto</p>
+          <p>{item.descripcion}</p>
         </section>
       </article>
     </div>
