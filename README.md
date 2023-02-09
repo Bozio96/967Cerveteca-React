@@ -27,6 +27,9 @@ Ademas de un precio total por la suma de todos los subtotales. Luego se confirma
 * react-router-dom version 6.6.2
 * react-toastify version 9.1.1 para utilizar notificaciones para las diferentes acciones y dar mas dinamismo visual al usuario.
 
+## Link al deploy:
+[Click aqui](https://967-cerveteca-react.vercel.app/)
+
 ## Descripcion del programador
 ![fotoPerfil](https://res.cloudinary.com/dnfil5isx/image/upload/v1675965865/imagenes/fotoPerfil_prjfan.png)
 * Nombre: Rodrigo Ezequiel Bozio
