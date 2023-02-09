@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {productos} from '../../productos/productos'
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import { productosColeccion } from "../../firebaseConfig";
+import {getDocs, query, where} from "firebase/firestore"
+import {toast} from 'react-toastify'
 
 export function ItemListContainer(greeting) {
   const [items, setItems] = useState([]);
@@ -10,23 +12,35 @@ export function ItemListContainer(greeting) {
 
   useEffect(() => {
     const getProducts = ()=>{
-        return new Promise((res,rej)=>{
-            const productosFiltrados = productos.filter(
-              (prod)=>prod.categoria === parametro.nombreCategoria
-              );
-            const filtro= parametro.nombreCategoria ? productosFiltrados : productos;
-            setTimeout(()=>{
-                res(filtro);
-            },800);
-        });
+        
+      let filtro;
+      if(parametro.nombreCategoria){
+        filtro = query(productosColeccion,where("categoria", "==", parametro.nombreCategoria ))
+      }else{
+        filtro = productosColeccion
+      }
+        
+        const pedidoCategoria = getDocs(filtro)
+        
+        pedidoCategoria
+        .then((res)=>{
+          const productos = res.docs.map((doc)=>{
+            return {id: doc.id, ...doc.data()}
+          }) 
+          setItems(productos);
+          if(parametro.nombreCategoria){
+            toast.success(parametro.nombreCategoria +" cargados/as con exito")
+          }else{
+            toast.success("Productos cargados con exito")
+          }
+        })
+        .catch(()=>{
+          toast.error("Hubo un error")
+        })
+
     };
     getProducts()
-    .then((res)=>{
-        setItems(res);
-    })
-    .catch((error)=>{
-        console.log(error);
-    });
+
   }, [parametro.nombreCategoria]);
 
   return (

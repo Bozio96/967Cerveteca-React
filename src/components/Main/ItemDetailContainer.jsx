@@ -1,34 +1,35 @@
-import React from 'react'
 import ItemDetail from './ItemDetail'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { productos } from '../../productos/productos'
+import {getDoc, doc} from 'firebase/firestore'
+import { productosColeccion } from '../../firebaseConfig'
+import {toast} from 'react-toastify'
 
 export default function ItemDetailContainer() {
   const [item, setItem] = useState({})
   const parametro = useParams();
-
+ 
   useEffect(()=>{
     const getProduct = ()=>{
-      return new Promise((res,rej)=>{
-        const productoFiltrado = productos.find(
-          (prod)=> prod.id === parseInt(parametro.id)
-        );
-        setTimeout(()=>{
-          res(productoFiltrado)
-        }, 800)
-      })
-    }
-    getProduct()
-    .then((res)=>{
-      setItem(res)
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-  }, [])
+        
+        const auxDoc = doc(productosColeccion, parametro.id);
+        const pedido = getDoc(auxDoc)
+
+        pedido
+        .then((res)=>{
+          const producto = res.data()
+          const auxProd = {...producto, id:parametro.id}
+          setItem(auxProd)
+        })
+        .catch(()=>{
+          toast.error("Hubo un error")
+        })
+      };
+      getProduct()
+    },[])
   
   return (
     <ItemDetail item={item}/>
   )
+  
 }
